@@ -18,7 +18,7 @@
     
     <body>
         <div id="app">
-            <!-- This portion is to inform the user you need to change the access and what are the other requirements needed in order to show the Invoice template. -->
+            <!-- This portion is to inform the user you need to change the access and what are the other requirements needed in order to show the Invoice template. 
             <div class="status" v-if="status">
                 <template v-if="status === 'waiting'">
                     <p>Waiting for data...</p>
@@ -36,7 +36,7 @@
                 <template v-else>
                     {{ status }}
                 </template>
-            </div>
+            </div>-->
             
             <template v-if="invoice">
                 <div class="top">
@@ -120,14 +120,15 @@
                     <template v-else>
                         <tr>
                             <th>Description (Test 3)</th>
-                            <th class="money">Unit Price (Test 4)</th>
-                            <th class="number">Quantity (Test 5)</th>
+                            <th>PO Number</th>
+                            <th>Dates of Service</th>
                             <th class="money">Total (Test 6)</th>
                         </tr>
                         <tr v-for="item in invoice.Items">
-                            <td>{{ item.Description }}</td>
-                            <td class="money">{{ item.Price | currency }}</td>
-                            <td class="number">{{ item.Quantity }}</td>
+                            <td>{{ item.Enrollment_Class_Description }}</td>
+                            <td>{{ item.PO_Number}}</td>
+                            <td>{{ item.Dates_of_Service}}</td>
+                            <td>{{ item.Price | currency }}</td>
                             <td class="money">{{ item.Total | currency }}</td>
                         </tr>
                     </template>
