@@ -125,7 +125,7 @@
                             <th class="money">Total (Test 6)</th>
                         </tr>
                         <tr v-for="item in invoice.Items">
-                            <td>{{ item.Enrollment_Class_Description }}</td>
+                            <td>{{ item.Enrollments.Ident }}</td>
                             <td>{{ item.PO_Number}}</td>
                             <td>{{ item.Dates_of_Service}}</td>
                             <td>{{ item.Price | currency }}</td>
