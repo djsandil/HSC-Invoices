@@ -18,6 +18,7 @@
     
     <body>
         <div id="app">
+            <!-- This portion is to inform the user you need to change the access and what are the other requirements needed in order to show the Invoice template. -->
             <div class="status" v-if="status">
                 <template v-if="status === 'waiting'">
                     <p>Waiting for data...</p>
@@ -36,6 +37,7 @@
                     {{ status }}
                 </template>
             </div>
+            
             <template v-if="invoice">
                 <div class="top">
                     <div class="block">
@@ -44,9 +46,11 @@
                         </div>
                         <div class="info"><span class="meta">Invoice Number</span> #{{ invoice.Number }}</div>
                         <div class="info" v-if="invoice.Issued"><div class="meta date-tag">Issued</div> {{ invoice.Issued | asDate }}</div>
-                        <div class="info" v-if="invoice.Due"><div class="meta date-tag">Due</div> {{ invoice.Due | asDate }}</div>
+                        <!-- Unsure if we need a due date on our Invoices; currently commenting it out for now. -->
+                        <!-- <div class="info" v-if="invoice.Due"><div class="meta date-tag">Due</div> {{ invoice.Due | asDate }}</div> -->
                     </div>
 
+                    <!-- Supplier: Our Company (HSC) information -->
                     <div class="supplier">
                         <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
                         <template v-if="typeof(business) === 'string'">
@@ -78,6 +82,7 @@
                     </div>
                 </div>
 
+                <!-- Client: Could be the Charter School or Instructor information-->
                 <div class="client" v-for="business in (invoice.Client ? [invoice.Client] : [])">
                     <div class="title">Client</div>
                     <div class="details">
@@ -100,11 +105,12 @@
                     </div>
                 </div>
 
+                <!-- Items: All the details for what needs to be billed. --> 
                 <table class="items">
                     <template v-if="!Array.isArray(invoice.Items)">
                     <tr>
-                        <th>Description</th>
-                        <th class="money">Total</th>
+                        <th>Description (Test 1)</th>
+                        <th class="money">Total (Test 2)</th>
                     </tr>
                     <tr>
                         <td>{{ invoice.Items }}</td>
@@ -113,10 +119,10 @@
                     </template>
                     <template v-else>
                         <tr>
-                            <th>Description</th>
-                            <th class="money">Unit Price</th>
-                            <th class="number">Quantity</th>
-                            <th class="money">Total</th>
+                            <th>Description (Test 3)</th>
+                            <th class="money">Unit Price (Test 4)</th>
+                            <th class="number">Quantity (Test 5)</th>
+                            <th class="money">Total (Test 6)</th>
                         </tr>
                         <tr v-for="item in invoice.Items">
                             <td>{{ item.Description }}</td>
@@ -126,9 +132,10 @@
                         </tr>
                     </template>
                 </table>
-
+                
+                <!-- Summarizes everything on the invoice (includes subtotal, deduction, and taxes).-->
                 <div class="summary">
-                    <div class="part">
+                    <!-- <div class="part">
                         <div class="title">Subtotal</div>
                         <div class="details">{{ invoice.Subtotal | currency }}</div>
                     </div>
@@ -139,17 +146,19 @@
                     <div class="part">
                         <div class="title">Taxes</div>
                         <div class="details">{{ invoice.Taxes | currency }}</div>
-                    </div>
+                    </div> -->
                     <div class="total">
                         <div class="title">Total</div>
                         <div class="details">{{ invoice.Total | currency }}</div>
                     </div>
                 </div>
 
+                <!-- If we have a note regarding our invoice this is the section it will appear. --> 
                 <template v-if="invoice.Note">
                     <p class="note">{{ invoice.Note }}</p>
                 </template>
 
+                <!-- ASSUMPTION: This is to help if something isn't correct on the current invoice grouping it into what should be there and what shouldn't be there. -->
                 <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
                     <div class="help">
                         <div class="help-close">
@@ -179,7 +188,8 @@
                         </div>
                     </div>
                 </template>
-
+                
+                <!--Final thank you message. -->
                 <div class="footer">
                     <div class="thanks">
                         Thank you!
