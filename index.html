@@ -155,15 +155,50 @@
                 </div>
 
                 <!-- If we have a note regarding our invoice this is the section it will appear. --> 
-                <template v-if="invoice.Note">
-                    <p class="note">{{ invoice.Note1 }}</p><br>
-                    <p class="note">{{ invoice.Note2 }}</p><br>
-                    <p class="note">{{ invoice.Note3 }}</p><br>
-                    <p class="note">{{ invoice.Note4 }}</p><br>
-                    <p class="note">{{ invoice.BusinessName }}</p><br>
-                    <p class="note">{{ invoice.StreetAddress }}</p><br>
-                    <p class="note">{{ invoice.City }} {{invoice.State}} {{ invoice.ZipCode }}</p><br>
-                </template>
+                <div class="note">
+                    <template v-if="invoice.Note">
+                        <p class="note">{{ invoice.Note }}</p><br>
+                        <!-- <p class="note">{{ invoice.Note1 }}</p><br>
+                        <p class="note">{{ invoice.Note2 }}</p><br>
+                        <p class="note">{{ invoice.Note3 }}</p><br>
+                        <p class="note">{{ invoice.Note4 }}</p><br>
+                        <p class="note">{{ invoice.BusinessName }}</p><br>
+                        <p class="note">{{ invoice.StreetAddress }}</p><br>
+                        <p class="note">{{ invoice.City }} {{invoice.State}} {{ invoice.ZipCode }}</p><br> -->
+                    </template>
+                </div>
+                <!--
+
+                    <div class="supplier">
+                        <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
+                        <template v-if="typeof(business) === 'string'">
+                            <div class="address newlined">{{ business }}</div>
+                        </template>
+                        <template v-else>
+                            <div class="address">
+                                <span class="name">{{ business.Name }}</span><br />
+                                {{ business.Street1 }}<br />
+                                <template v-if="business.Street2">
+                                    {{ business.Street2 }}<br />
+                                </template>
+                                {{ business.City }} {{ business.State }} {{ business.Zip }}<br />
+                                <template v-if="business.Country">
+                                    {{ business.Country }}<br />
+                                </template>
+                            </div>
+                            <template v-if="business.Email">
+                                <div class="email">{{ business.Email }}</div>
+                            </template>
+                            <template v-if="business.Phone">
+                                <div class="phone">{{ business.Phone }}</div>
+                            </template>
+                            <template v-if="business.Website">
+                                <div class="website"><a v-bind:href="business.Url">{{ business.Website }}</a></div>
+                            </template>
+                        </template>
+                        </div>
+                    </div>
+                </div> -->
 
                 <!-- ASSUMPTION: This is to help if something isn't correct on the current invoice grouping it into what should be there and what shouldn't be there. -->
                 <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
