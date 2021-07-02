@@ -109,26 +109,26 @@
                 <table class="items">
                     <template v-if="!Array.isArray(invoice.Items)">
                     <tr>
-                        <th>Description (Test 1)</th>
-                        <th class="money">Total (Test 2)</th>
+                        <th>Description</th>
+                        <th class="money">Total=</th>
                     </tr>
                     <tr>
                         <td>{{ invoice.Items }}</td>
                         <td class="money">{{ invoice.Total | currency }}</td>
                     </tr>
                     </template>
-                    <template v-else>
+                    <template v-else> <!-- This is where it will show the invoice data-->
                         <tr>
-                            <th>Description (Test 3)</th>
+                            <th>Description</th>
                             <th>PO Number</th>
                             <th>Dates of Service</th>
-                            <th class="money">Total (Test 6)</th>
+                            <th class="money">Total</th>
                         </tr>
                         <tr v-for="item in invoice.Items">
                             <td>{{ item.Description }}</td>
-                            <td>{{ item.PO_Number}}</td>
-                            <td>{{ item.Dates_of_Service}}</td>
-                            <td>{{ item.Price | currency }}</td>
+                            <td>{{ item.PO_Number }}</td>
+                            <td>{{ item.Dates_of_Service }}</td>
+                            <td>{{ item.Invoice_Amount | currency }}</td>
                             <td class="money">{{ item.Total | currency }}</td>
                         </tr>
                     </template>
@@ -156,7 +156,13 @@
 
                 <!-- If we have a note regarding our invoice this is the section it will appear. --> 
                 <template v-if="invoice.Note">
-                    <p class="note">{{ invoice.Note }}</p>
+                    <p class="note">{{ invoice.Note1 }}</p><br>
+                    <p class="note">{{ invoice.Note2 }}</p><br>
+                    <p class="note">{{ invoice.Note3 }}</p><br>
+                    <p class="note">{{ invoice.Note4 }}</p><br>
+                    <p class="note">{{ invoice.BusinessName }}</p><br>
+                    <p class="note">{{ invoice.StreetAddress }}</p><br>
+                    <p class="note">{{ invoice.City }} {{invoice.State}} {{ invoice.ZipCode }}</p><br>
                 </template>
 
                 <!-- ASSUMPTION: This is to help if something isn't correct on the current invoice grouping it into what should be there and what shouldn't be there. -->
